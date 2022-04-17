@@ -2,7 +2,9 @@ import './App.css';
 import React, { Component } from 'react';
 import axios from 'axios';
 
-
+const axiosInstance = axios.create({
+  baseURL: 'https://jsonplaceholder.typicode.com'
+})
 
 class App extends Component {
 
@@ -14,9 +16,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/hello')
-    .then(res => this.setState({hello: res.data}))
-    .catch(err=>console.log('/hello error: ', err));
+    axiosInstance.get('/posts')
+    .then(res => console.log(res.data))
+    .catch(err=>console.log('/jsonplaceholder error: ', err));
   }
 
   render() {
